@@ -1,6 +1,3 @@
-//  PicnicViewController.m
-
-
 #import "PicnicViewController.h"
 
 @implementation PicnicViewController
@@ -10,32 +7,13 @@
 @synthesize napkinBottom;
 @synthesize bug;
 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-/*- (void)loadView {
-    
-}*/
-
 - (void)viewTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"View tapped!");
 }
 
-
-
 - (void)moveToLeft:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
- 
-    if (bugDead) return;
+    
+    if (tappedNewYearLogo) return;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationDelay:2.0];
@@ -49,7 +27,7 @@
 
 - (void)faceRight:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
     
-    if (bugDead) return;
+    if (tappedNewYearLogo) return;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationDelay:0.0];
@@ -63,7 +41,7 @@
 
 - (void)moveToRight:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
     
-    if (bugDead) return;
+    if (tappedNewYearLogo) return;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationDelay:2.0];
@@ -77,7 +55,7 @@
 
 - (void)faceLeft:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
     
-    if (bugDead) return;    
+    if (tappedNewYearLogo) return;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationDelay:0.0];
@@ -102,25 +80,25 @@
         NSLog(@"Logo not tapped.");
         return;
     }
-    bugDead = true;
-    [UIView animateWithDuration:0.7 
-                          delay:0.0 
+    tappedNewYearLogo = true;
+    [UIView animateWithDuration:0.7
+                          delay:0.0
                         options:UIViewAnimationCurveEaseOut
-                     animations:^{                              
+                     animations:^{
                          bug.transform = CGAffineTransformMakeScale(1.25, 0.75);
-                     } 
-                     completion:^(BOOL finished) {  
-                         [UIView animateWithDuration:2.0 
-                                               delay:2.0 
+                     }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:2.0
+                                               delay:2.0
                                              options:0
-                                          animations:^{                      
+                                          animations:^{
                                               bug.alpha = 0.0;
                                           } completion:^(BOOL finished) {
                                               [bug removeFromSuperview];
                                               bug = nil;
-                                          }];                 
+                                          }];
                      }];
-
+    
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -132,55 +110,47 @@
     
     CGRect basketTopFrame = basketTop.frame;
     basketTopFrame.origin.y = -basketTopFrame.size.height;
-
+    
     CGRect basketBottomFrame = basketBottom.frame;
     basketBottomFrame.origin.y = self.view.bounds.size.height;
-     
+    
     // iOS4+
     [UIView animateWithDuration:0.5
-        delay:1.0
-        options: UIViewAnimationCurveEaseOut
-        animations:^{
-            basketTop.frame = basketTopFrame;
-            basketBottom.frame = basketBottomFrame;
-        } 
-        completion:^(BOOL finished){
-            NSLog(@"Done!");
-        }];
+                          delay:1.0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         basketTop.frame = basketTopFrame;
+                         basketBottom.frame = basketBottomFrame;
+                     }
+                     completion:^(BOOL finished){
+                         NSLog(@"Done!");
+                     }];
     
     CGRect napkinTopFrame = napkinTop.frame;
-    napkinTopFrame.origin.y = -napkinTopFrame.size.height;    
+    napkinTopFrame.origin.y = -napkinTopFrame.size.height;
     CGRect napkinBottomFrame = napkinBottom.frame;
     napkinBottomFrame.origin.y = self.view.bounds.size.height;
-
+    
     [UIView animateWithDuration:0.7
                           delay:1.2
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          napkinTop.frame = napkinTopFrame;
                          napkinBottom.frame = napkinBottomFrame;
-                     } 
+                     }
                      completion:^(BOOL finished){
                          NSLog(@"Done!");
                      }];
     
     
     [self moveToLeft:nil finished:nil context:nil];
-        
+    
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+    
 	// Release any cached data, images, etc that aren't in use.
 }
 

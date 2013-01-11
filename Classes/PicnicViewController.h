@@ -4,7 +4,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PicnicViewController : UIViewController {
-    bool bugDead;
+    bool tappedNewYearLogo;
 }
 
 @property (assign) IBOutlet UIImageView *basketTop;
