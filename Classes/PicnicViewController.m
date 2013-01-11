@@ -3,7 +3,7 @@
 @implementation PicnicViewController
 @synthesize basketTop;
 @synthesize basketBottom;
-@synthesize bug;
+@synthesize newyearLogo;
 
 - (void)viewTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"View tapped!");
@@ -18,7 +18,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(faceRight:finished:context:)];
-    bug.center = CGPointMake(75, 200);
+    newyearLogo.center = CGPointMake(75, 200);
     [UIView commitAnimations];
     
 }
@@ -32,7 +32,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(moveToRight:finished:context:)];
-    bug.transform = CGAffineTransformMakeRotation(M_PI);
+    newyearLogo.transform = CGAffineTransformMakeRotation(M_PI);
     [UIView commitAnimations];
     
 }
@@ -46,7 +46,7 @@
     [UIView setAnimationDelegate:self];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDidStopSelector:@selector(faceLeft:finished:context:)];
-    bug.center = CGPointMake(230, 250);
+    newyearLogo.center = CGPointMake(230, 250);
     [UIView commitAnimations];
     
 }
@@ -60,7 +60,7 @@
     [UIView setAnimationDelegate:self];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDidStopSelector:@selector(moveToLeft:finished:context:)];
-    bug.transform = CGAffineTransformMakeRotation(0);
+    newyearLogo.transform = CGAffineTransformMakeRotation(0);
     [UIView commitAnimations];
     
 }
@@ -70,9 +70,9 @@
     UITouch *touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
     
-    //CGRect bugRect = [bug frame];
-    CGRect bugRect = [[[bug layer] presentationLayer] frame];
-    if (CGRectContainsPoint(bugRect, touchLocation)) {
+    //CGRect newYearLogoRectRect = [newYearLogoRect frame];
+    CGRect newYearLogoRect = [[[newyearLogo layer] presentationLayer] frame];
+    if (CGRectContainsPoint(newYearLogoRect, touchLocation)) {
         NSLog(@"Logo tapped!");
     } else {
         NSLog(@"Logo not tapped.");
@@ -83,17 +83,17 @@
                           delay:0.0
                         options:UIViewAnimationCurveEaseOut
                      animations:^{
-                         bug.transform = CGAffineTransformMakeScale(1.25, 0.75);
+                         newyearLogo.transform = CGAffineTransformMakeScale(1.25, 0.75);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:2.0
                                                delay:2.0
                                              options:0
                                           animations:^{
-                                              bug.alpha = 0.0;
+                                              newyearLogo.alpha = 0.0;
                                           } completion:^(BOOL finished) {
-                                              [bug removeFromSuperview];
-                                              bug = nil;
+                                              [newyearLogo removeFromSuperview];
+                                              newyearLogo = nil;
                                           }];
                      }];
     
@@ -104,7 +104,7 @@
     [super viewDidLoad];
     
     //UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)] autorelease];
-    //[bug addGestureRecognizer:tapRecognizer];
+    //[newYearLogoRect addGestureRecognizer:tapRecognizer];
     
     CGRect basketTopFrame = basketTop.frame;
     basketTopFrame.origin.y = -basketTopFrame.size.height;
