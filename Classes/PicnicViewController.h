@@ -9,9 +9,8 @@
 
 @property (assign) IBOutlet UIImageView *basketTop;
 @property (assign) IBOutlet UIImageView *basketBottom;
-@property (assign) IBOutlet UIImageView *napkinTop;
-@property (assign) IBOutlet UIImageView *napkinBottom;
-@property (assign) IBOutlet UIImageView *bug;
+@property (assign) IBOutlet UIImageView *newyearLogo;
+
 
 @end
 
